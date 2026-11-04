@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html manifest="css.appcache">
+<head>
+<meta charset="utf-8">
+<title>GameStop02 — استغلال ويب PS4 للإصدارات 7.00 إلى 14.00</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>
+history.replaceState(null,null,'index.html');var histlength=history.length;history.go(-histlength);
+function DLProgress(e){Percent=(Math.round(e.loaded / e.total * 100));window.msgs.innerHTML="Installing Offline Cache: " + Percent + "%";}
+function DisplayCacheProgress(){window.msgs.innerHTML="Cache Installed Successfully ✔";setTimeout(function(){window.msgs.innerHTML="Now Close And Re-Open Your Browser ...";},1500);}
+window.applicationCache.addEventListener("progress",DLProgress,false);
+window.applicationCache.oncached=function(e){DisplayCacheProgress();};
+window.applicationCache.onupdateready=function(e){DisplayCacheProgress();};
+window.applicationCache.onerror=function(e){window.msgs.innerHTML="Error Installing Cache! - Clear and Re-Open Your Browser ...";};
+</script>
+<h1 class="page-title"><span class="rainbow-brand">GameStop02</span> — استغلال ويب PS4 للإصدارات 7.00 إلى 14.00</h1>
+<hr>
+<br>
+<h1 id=msgs style="font-size: 30px;margin-top: 77px;margin-bottom: 455px;">جارٍ بدء تثبيت ذاكرة التخزين المؤقت...</h1>
+<div id="exploit-progress" role="progressbar" aria-label="تقدم العملية" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="exploit-progress-bar"></div></div>
+<script>
+(function () {
+  var message = document.getElementById("msgs");
+  var bar = document.getElementById("exploit-progress-bar");
+  var progress = document.getElementById("exploit-progress");
+  if (!message || !bar || !progress) return;
+  var translations = [
+    [/Starting Cache Installation\.\.\./i, "جارٍ بدء تثبيت ذاكرة التخزين المؤقت..."],
+    [/Installing Offline Cache:\s*(\d+)%/i, "جارٍ تثبيت ذاكرة التخزين المؤقت: $1٪"],
+    [/Cache Installed Successfully\s*✔/i, "تم تثبيت ذاكرة التخزين المؤقت بنجاح ✔"],
+    [/Now Close And Re-Open Your Browser/i, "أغلق المتصفح ثم أعد فتحه"],
+    [/Error Installing Cache!.*$/i, "حدث خطأ أثناء تثبيت ذاكرة التخزين المؤقت. امسح بيانات المتصفح وأعد فتحه."],
+    [/Loading GoldHEN.*Please Wait/i, "جارٍ تحميل GoldHEN... يُرجى الانتظار"],
+    [/GoldHEN v2\.4b18\.13 Loaded\s*\.\.\./i, "تم تحميل GoldHEN v2.4b18.13 بنجاح"],
+    [/GoldHEN is Already Loaded\s*\.\.\./i, "تم تحميل GoldHEN مسبقًا"],
+    [/Failed to Load! Restart Your Console.*$/i, "تعذر التحميل. أعد تشغيل جهازك وحاول مجددًا."],
+    [/Content not Found!.*$/i, "لم يتم العثور على المحتوى. امسح بيانات المتصفح وأعد تثبيت ذاكرة التخزين المؤقت."],
+    [/Only for PS4 with Firmware (.*)/i, "لجهاز PS4 بإصدار النظام $1"],
+    [/Unsupported Firmware:\s*(.*)/i, "إصدار النظام غير مدعوم: $1"]
+  ];
+  function update() {
+    var original = message.textContent.trim();
+    var percentMatch = original.match(/(\d+)[%٪]/);
+    var translated = original;
+    for (var i = 0; i < translations.length; i++) {
+      if (translations[i][0].test(original)) { translated = original.replace(translations[i][0], translations[i][1]); break; }
+    }
+    if (translated !== original) message.textContent = translated;
+    if (percentMatch) {
+      var percent = Math.max(0, Math.min(100, Number(percentMatch[1])));
+      bar.style.width = percent + "%";
+      progress.setAttribute("aria-valuenow", String(percent));
+      progress.classList.remove("is-indeterminate", "is-error");
+    } else if (/loaded successfully|already loaded|installed successfully|تم تحميل|تم تثبيت/i.test(translated)) {
+      bar.style.width = "100%";
+      progress.setAttribute("aria-valuenow", "100");
+      progress.classList.remove("is-indeterminate", "is-error");
+    } else if (/error|failed|تعذر|خطأ|لم يتم العثور/i.test(translated)) {
+      bar.style.width = "100%";
+      progress.classList.remove("is-indeterminate");
+      progress.classList.add("is-error");
+    } else {
+      progress.classList.add("is-indeterminate");
+      progress.classList.remove("is-error");
+      progress.removeAttribute("aria-valuenow");
+    }
+  }
+  message.setAttribute("dir", "rtl");
+  new MutationObserver(update).observe(message, { childList: true, characterData: true, subtree: true });
+  update();
+})();
+</script>
+
+
+</body>
+</html>

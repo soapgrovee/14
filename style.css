@@ -1,0 +1,200 @@
+html, body { height: 100%; }
+html {
+    background-image: radial-gradient(ellipse at 84% 76%, rgba(255, 48, 128, .30), transparent 38%), radial-gradient(ellipse at 72% 88%, rgba(35, 210, 222, .18), transparent 42%), url('background.png');
+    background-size: 100% 100%, 100% 100%, 100% 100%;
+    background-position: center, center, center;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-color: #24272b;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+h1 {
+    text-shadow: 0.1em 0.1em 0.2em black;
+    font-size: 25px;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+#progress {
+    display: block;
+}
+
+#menu {
+    display: block;
+}
+
+#crypto {
+    display: none;
+}
+
+#tools {
+    display: none;
+}
+
+#lnx {
+    display: none;
+}
+
+#mods {
+    display: none;
+}
+
+.btn {
+    background-color: #003263;
+    color: white;
+    width: 227px;
+    height: 46px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-style: none;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: #0069d9;
+}
+
+.btn-onln {
+    background-color: #076300;
+}
+
+.btn-onln:hover {
+    background-color: #18891b;
+}
+
+.btn-toolbox {
+    background-color: #ae2301;
+}
+
+.btn-toolbox:hover {
+    background-color: #d42a01;
+}
+
+.btn-multi {
+    background-color: #b8860b;
+}
+
+.btn-multi:hover {
+    background-color: #daa520;
+}
+#exploit-progress {
+    width: min(72%, 540px);
+    height: 14px;
+    margin: -420px auto 0;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 999px;
+    background: rgba(0,0,0,.55);
+    direction: ltr;
+}
+#exploit-progress-bar {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #a40028, #ff365d);
+    transition: width .25s ease;
+}
+#exploit-progress.is-indeterminate #exploit-progress-bar {
+    width: 38%;
+    animation: progress-sweep 1.35s ease-in-out infinite alternate;
+}
+#exploit-progress.is-error #exploit-progress-bar { background: #d99a18; }
+@keyframes progress-sweep {
+    from { transform: translateX(0); }
+    to { transform: translateX(165%); }
+}
+#msgs { direction: rtl; }
+.rainbow-brand {
+    display: inline-block;
+    background: linear-gradient(90deg, #ff4d4d, #ffb84d, #fff44d, #54e36a, #4dd9ff, #6680ff, #d65cff, #ff4d4d);
+    background-size: 300% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow-brand-shift 5s linear infinite;
+}
+@keyframes rainbow-brand-shift {
+    from { background-position: 0% 50%; }
+    to { background-position: 100% 50%; }
+}
+#brand-watermark {
+    position: fixed;
+    right: 26px;
+    bottom: 22px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 11px 16px 11px 12px;
+    border: 1px solid rgba(76, 224, 233, .52);
+    border-radius: 16px;
+    background: linear-gradient(120deg, rgba(8, 12, 28, .86), rgba(29, 12, 40, .78));
+    box-shadow: 0 0 22px rgba(255, 52, 139, .22), 0 8px 28px rgba(0, 0, 0, .45);
+    direction: ltr;
+    pointer-events: none;
+}
+.gs-logo { width: 54px; height: 54px; flex: 0 0 auto; }
+.brand-watermark-copy { display: flex; flex-direction: column; gap: 3px; text-align: left; }
+.brand-watermark-copy strong { color: #fff; font: 800 21px/1.1 Arial, sans-serif; letter-spacing: .3px; }
+.brand-watermark-copy strong span { color: #3bdde1; }
+.brand-watermark-copy small { color: rgba(255,255,255,.66); font: 700 9px/1 Arial, sans-serif; letter-spacing: 2px; }
+@media (max-width: 640px) {
+    #brand-watermark { right: 12px; bottom: 12px; gap: 8px; padding: 8px 10px; }
+    .gs-logo { width: 42px; height: 42px; }
+    .brand-watermark-copy strong { font-size: 17px; }
+    .brand-watermark-copy small { font-size: 8px; }
+}
+
+/* Layout matched to the supplied GameStop02 poster: live status stays in its empty center panel. */
+body { margin: 0; }
+body > hr, body > br, #brand-watermark { display: none !important; }
+.page-title { position: fixed; top: 6.2%; left: 23.8%; width: 52.4%; margin: 0; padding: 0 12px; box-sizing: border-box; color: #fff; text-align: center; font-size: 25px; line-height: 1.25; letter-spacing: .025em; text-shadow: 0 2px 10px #070716; z-index: 5; }
+#msgs {
+    position: fixed;
+    top: 20%;
+    left: 23.8%;
+    width: 52.4%;
+    margin: 0 !important;
+    padding: 0 16px;
+    box-sizing: border-box;
+    color: #fff;
+    text-align: center;
+    font-size: 30px !important;
+    line-height: 1.35;
+    text-shadow: 0 2px 8px #090816;
+    z-index: 5;
+}
+#exploit-progress {
+    position: fixed;
+    top: 38%;
+    left: 25%;
+    width: 50%;
+    max-width: none;
+    height: 15px;
+    margin: 0;
+    box-sizing: border-box;
+    z-index: 5;
+}
+#brand-watermark { display: none !important; }
+
+@media (max-aspect-ratio: 3/2) {
+    #msgs { top: 18%; left: 21%; width: 58%; }
+    #exploit-progress { top: 37%; left: 23%; width: 54%; }
+
+}
+#exploit-progress { border: 2px solid rgba(244, 57, 222, .88); border-radius: 999px; background: rgba(8, 9, 28, .88); box-shadow: 0 0 14px rgba(237, 48, 218, .45); }
+#exploit-progress-bar { background: linear-gradient(90deg, #ed32d4, #38d8ee); }
